@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "lldb",
+            "request": "launch",
+            "name": "xtask",
+            "program": "${workspaceFolder}/target/debug/xtask",
+            "args": [
+                "grpc-client",
+            ],
+            "preLaunchTask": "build_xtask",
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "sudo xtask",
+            "type": "lldb",
+            "request": "launch",
+            "program": "${workspaceFolder}/target/debug/xtask",
+            "args": ["run-dataplane"],
+            "preLaunchTask": "build_xtask",
+            "initCommands": [
+                "platform select remote-linux",
+                "platform connect connect://localhost:3999",
+                "log enable lldb default",
+                "settings set target.inherit-env false",
+            ],
+        },
+    ]
+}
+

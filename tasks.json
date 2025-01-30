@@ -1,0 +1,16 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cargo",
+            "command": "build",
+            "group": "build",
+            "args": [
+                "--bin",
+                "xtask"
+            ],
+            "label": "build_xtask"
+        }
+    ]
+}
+
