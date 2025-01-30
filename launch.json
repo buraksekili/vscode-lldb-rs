@@ -16,16 +16,42 @@
             "name": "sudo xtask",
             "type": "lldb",
             "request": "launch",
+            "cwd": "${workspaceFolder}",
             "program": "${workspaceFolder}/target/debug/xtask",
-            "args": ["run-dataplane"],
+            "args": [
+                "run-dataplane"
+            ],
             "preLaunchTask": "build_xtask",
             "initCommands": [
                 "platform select remote-linux",
                 "platform connect connect://localhost:3999",
-                "log enable lldb default",
-                "settings set target.inherit-env false",
+                "settings set target.process.stop-on-exec false"
+            ],
+            "expressions": "native",
+            "preRunCommands": [
+                "command script import /home/burak/Downloads/rust_prettifier_for_lldb.py"
             ],
         },
+        {
+            "name": "sudo loader",
+            "type": "lldb",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/target/debug/loader",
+            "env": {
+                "RUST_LOG": "info,api_server=debug"
+            },
+            "preLaunchTask": "build_xtask",
+            "initCommands": [
+                "platform select remote-linux",
+                "platform connect connect://localhost:3999",
+                "settings set target.process.stop-on-exec false"
+            ],
+            "expressions": "native",
+            "preRunCommands": [
+                "command script import /home/burak/Downloads/rust_prettifier_for_lldb.py"
+            ],
+        }
     ]
 }
 
